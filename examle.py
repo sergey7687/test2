@@ -75,3 +75,16 @@ def max_digit(par):
 
 
 print(max_digit(696))
+
+
+def split_pairs(par):
+    if par == '':
+        return []
+    if len(par) % 2 == 1:
+        par = par + "_"
+    for i in range(0, len(par), 2):
+        print(i)
+    # b = [par[i:i + 2] for i in range(0, len(par), 2)]
+    # return b
+
+print(split_pairs('abcdg'))
