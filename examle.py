@@ -87,4 +87,40 @@ def split_pairs(par):
     # b = [par[i:i + 2] for i in range(0, len(par), 2)]
     # return b
 
+
 print(split_pairs('abcdg'))
+from datetime import datetime
+
+
+def decor(func):
+    def wrapper(*args, **kwargs):
+        init_time = datetime.now()
+        for i in range(1000):
+            func(*args, **kwargs)
+        print(datetime.now() - init_time)
+        return func(*args, **kwargs)
+
+    return wrapper
+
+@decor
+def beginning_zeroes(num):
+    # your code here
+    count = 0
+    for i in num:
+        if i == '0':
+            count += 1
+        else:
+            break
+    # return len(number) - len(number.lstrip('0'))
+
+    return count
+
+
+print(beginning_zeroes('00001020110'))
+
+@decor
+def beginning_zeroes2(num):
+    return len(num) - len(num.lstrip('0'))
+
+
+print(beginning_zeroes2('00001020110'))
