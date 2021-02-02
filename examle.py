@@ -189,3 +189,38 @@ def between_markers(word, mar1, mar2):
 
 
 print(between_markers('What is >apple<', '>', '<'))
+
+
+def sum_number(num):
+    return sum([int(i) for i in num.split() if i.isdigit()])
+
+
+print(sum_number('my numbers is 2'))
+
+sum_numbers = lambda text: sum(int(word) for word in text.split() if word.isdigit())
+print(sum_number('my numbers is 2'))
+
+
+# sum numbers
+def even_ind(num):
+    if not num:
+        return 0
+    else:
+        return sum([v for i, v in enumerate(num) if i % 2 == 0]) * num[-1]
+
+
+print(even_ind([0, 1, 2, 3, 4, 5]))
+
+
+# even the last
+def checkio1(array):
+    if len(array) == 0: return 0
+    return sum(array[::2]) * array[-1]
+
+
+print(checkio1([0, 1, 2, 3, 4, 5]))
+
+
+# right to left
+def left_join(phrases):
+    return ','.join(phrases).replace('right', 'left')
