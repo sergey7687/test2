@@ -96,11 +96,12 @@ def decor(func):
     def wrapper(*args, **kwargs):
         init_time = datetime.now()
         for i in range(1000):
-            func(*args, **kwargs)
+            v = func(*args, **kwargs)
         print(datetime.now() - init_time)
-        return func(*args, **kwargs)
+        return v
 
     return wrapper
+
 
 @decor
 def beginning_zeroes(num):
@@ -118,9 +119,73 @@ def beginning_zeroes(num):
 
 print(beginning_zeroes('00001020110'))
 
+
 @decor
 def beginning_zeroes2(num):
     return len(num) - len(num.lstrip('0'))
 
 
 print(beginning_zeroes2('00001020110'))
+
+
+def nearest_value(par_l, n_val):
+    v_l = []
+    print(sorted(par_l))
+    for i in sorted(list(par_l)):
+        if i == n_val:
+            return i
+        else:
+            v_l.append(abs(i - n_val))
+    print(v_l)
+    index_l = v_l.index(min(v_l))
+    return sorted(list(par_l))[index_l]
+
+
+b = nearest_value({4, 7, 10, 11, 12, 17}, 9)
+
+
+def nearest_value(values: set, one: int) -> int:
+    holder = {val: abs(val - one) for val in values}
+    print(holder)
+    mins = min(holder.values())
+    return min(k for k, v in holder.items() if v == mins)
+
+
+print(nearest_value({0, -2}, -1))
+
+
+def correct_sentence(par):
+    if par.endswith('.'):
+        return par[0].title() + par[1:]
+    else:
+        return par[0].title() + par[1:] + '.'
+
+
+print(correct_sentence('greeting, friends'))
+
+
+def is_even(num):
+    if num % 2 == 0:
+        return True
+    return False
+
+
+print(is_even(5))
+
+
+def between_markers(word, mar1, mar2):
+    my_str = ''
+    marker = False
+    for i in word:
+        if i == mar1:
+            marker = True
+            continue
+        if marker:
+            my_str += i
+            if i == mar2:
+                break
+
+    return my_str.rstrip(mar2)
+
+
+print(between_markers('What is >apple<', '>', '<'))
